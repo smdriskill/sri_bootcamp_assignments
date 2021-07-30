@@ -1,0 +1,41 @@
+# install tidyverse
+install.packages("tidyverse")
+library(tidyverse)
+# install remotes
+install.packages("remotes")
+# install data
+remotes::install_github("allisonhorst/palmerpenguins")
+library(palmerpenguins)
+penguins
+# check data import
+library(palmerpenguins)
+penguins
+# double check data import
+glimpse(penguins)
+
+ggplot(data = penguins, 
+aes(x = bill_length_mm, y = bill_depth_mm)) +
+geom_point(aes(color = species, shape = species),
+size = 3, alpha = 0.8) + 
+#theme_minimal() +
+scale_color_manual(values = c("darkorange", "purple", "cyan4")) +
+labs(title = "Bill size, Palmer Station LTER",
+subtitle = "Bill length and bill depth for Adelie, Chinstrap, and Gentoo Penguins",
+x = "Bill length (mm)",
+y = "Bill depth (mm) ",
+color = "Penguin species",
+shape = "Penguin species") +
+theme_minimal()
+
+#Variable Class
+class(penguins$sex)
+class(penguins$body_mass_g)
+
+#Variable Levels
+levels(penguins$sex)
+
+penguins %>%
+  group_by(island) %>%
+  summarise(mean(bill_length_mm))
+
+Summary(penguins)
